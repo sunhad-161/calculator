@@ -15,6 +15,7 @@ namespace Calculator
         public Form1()
         {
             InitializeComponent();
+            textBox1.Text = tmp;
         }
         public void Do_operation()
         {
@@ -27,75 +28,89 @@ namespace Calculator
                 case "divide":
                     if (a != 0) value /= a;
                     else err = true; break;
+                default: value = a; break;
             }
         }
+
         public double value;
-        public string tmp = "";
+        public string tmp = "0";
         public string oper;
         public bool err = false;
         public bool neg = false;
         public bool dec = false;
+
+        //ввод цифр от 0 до 9
+        private void button10_Click(object sender, EventArgs e)
+        {
+            if (tmp != "0")
+            {
+                tmp += "0";
+                textBox1.Text = tmp;
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-            tmp += "1";
+            if (tmp != "0") tmp += "1";
+            else tmp = "1";
             textBox1.Text = tmp;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            tmp += "2";
+            if (tmp != "0") tmp += "2";
+            else tmp = "2";
             textBox1.Text = tmp;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            tmp += "3";
+            if (tmp != "0") tmp += "3";
+            else tmp = "3";
             textBox1.Text = tmp;
-
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            tmp += "4";
+            if (tmp != "0") tmp += "4";
+            else tmp = "4";
             textBox1.Text = tmp;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            tmp += "5";
+            if (tmp != "0") tmp += "5";
+            else tmp = "5";
             textBox1.Text = tmp;
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
-            tmp += "6";
+            if (tmp != "0") tmp += "6";
+            else tmp = "6";
             textBox1.Text = tmp;
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-            tmp += "7";
+            if (tmp != "0") tmp += "7";
+            else tmp = "7";
             textBox1.Text = tmp;
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            tmp += "8";
+            if (tmp != "0") tmp += "8";
+            else tmp = "8";
             textBox1.Text = tmp;
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            tmp += "9";
+            if (tmp != "0") tmp += "9";
+            else tmp = "9";
             textBox1.Text = tmp;
         }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            tmp += "0";
-            textBox1.Text = tmp;
-        }
-
+        //сложение и вычитание
         private void button11_Click(object sender, EventArgs e)
         {
             if (oper == null)
@@ -131,7 +146,7 @@ namespace Calculator
             neg = false;
             dec = false;
         }
-        //кнопка равно
+        //равно
         private void button13_Click(object sender, EventArgs e)
         {
             if (tmp != "") Do_operation();
@@ -143,7 +158,7 @@ namespace Calculator
             dec = false;
             err = false;
         }
-
+        //умножение и деление
         private void button14_Click(object sender, EventArgs e)
         {
             if (oper == null)
@@ -179,7 +194,7 @@ namespace Calculator
             neg = false;
             dec = false;
         }
-        //кнопка десятичной дроби
+        //десятичная дробь
         private void button16_Click(object sender, EventArgs e)
         {
             if (!dec)
@@ -189,7 +204,7 @@ namespace Calculator
                 textBox1.Text = tmp;
             }
         }
-        //кнопка смены знака
+        //отрицательное число
         private void button17_Click(object sender, EventArgs e)
         {
             if (neg)
@@ -208,7 +223,7 @@ namespace Calculator
         private void button18_Click(object sender, EventArgs e)
         {
             value = new double();
-            tmp = "";
+            tmp = "0";
             oper = null;
             neg = false;
             dec = false;
@@ -217,16 +232,49 @@ namespace Calculator
         //кнопка CE
         private void button19_Click(object sender, EventArgs e)
         {
-            tmp = "";
+            tmp = "0";
             neg = false;
             dec = false;
             textBox1.Text = tmp;
         }
-        //кнопка стирать
+        //стирать
         private void button20_Click(object sender, EventArgs e)
         {
             if (tmp.Remove(0, tmp.Length - 1) == ",") dec = false;
-            tmp = tmp.Remove(tmp.Length - 1, 1);
+            if (tmp.Length != 1) tmp = tmp.Remove(tmp.Length - 1, 1);
+            else tmp = "0";
+            textBox1.Text = tmp;
+        }
+        //процент
+        private void button21_Click(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(tmp);
+            a /= 100;
+            tmp = Convert.ToString(a);
+            textBox1.Text = tmp;
+        }
+        //обратное число
+        private void button22_Click(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(tmp);
+            a = 1 / a;
+            tmp = Convert.ToString(a);
+            textBox1.Text = tmp;
+        }
+        //квадрат числа
+        private void button23_Click(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(tmp);
+            a = a * a;
+            tmp = Convert.ToString(a);
+            textBox1.Text = tmp;
+        }
+        //корень числа
+        private void button24_Click(object sender, EventArgs e)
+        {
+            double a = Convert.ToDouble(tmp);
+            a = Math.Sqrt(a);
+            tmp = Convert.ToString(a);
             textBox1.Text = tmp;
         }
     }
