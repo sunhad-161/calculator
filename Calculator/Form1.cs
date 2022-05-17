@@ -17,6 +17,7 @@ namespace Calculator
             InitializeComponent();
             textBox1.Text = tmp;
         }
+        //функция выполнения последней заданной операции
         public void Do_operation()
         {
             double a = Convert.ToDouble(tmp);
@@ -32,8 +33,24 @@ namespace Calculator
             }
         }
 
+        public void Change_history(bool q)
+        {
+            string a = "";
+            switch (oper)
+            {
+                case "plus": a = " + "; break;
+                case "minus": a = " - "; break;
+                case "multiply": a = " * "; break;
+                case "divide": a = " / "; break;
+            }
+            if (!q) history = Convert.ToString(value) + a;
+            else history = Convert.ToString(value) + a + tmp + " =";
+            textBox2.Text = history;
+        }
+
         public double value;
         public string tmp = "0";
+        public string history = "error 0000000000000";
         public string oper;
         public bool err = false;
         public bool neg = false;
@@ -123,6 +140,7 @@ namespace Calculator
                 if (tmp != "") Do_operation();
                 oper = "plus";
             }
+            Change_history(false);
             tmp = "";
             textBox1.Text = Convert.ToString(value);
             neg = false;
@@ -141,6 +159,7 @@ namespace Calculator
                 if (tmp != "") Do_operation();
                 oper = "minus";
             }
+            Change_history(false);
             tmp = "";
             textBox1.Text = Convert.ToString(value);
             neg = false;
@@ -149,11 +168,10 @@ namespace Calculator
         //равно
         private void button13_Click(object sender, EventArgs e)
         {
+            Change_history(true);
             if (tmp != "") Do_operation();
             if (err) textBox1.Text = "ERROR";
             else textBox1.Text = Convert.ToString(value);
-            tmp = "";
-            oper = null;
             neg = false;
             dec = false;
             err = false;
@@ -171,6 +189,7 @@ namespace Calculator
                 if (tmp != "") Do_operation();
                 oper = "multiply";
             }
+            Change_history(false);
             tmp = "";
             textBox1.Text = Convert.ToString(value);
             neg = false;
@@ -189,6 +208,7 @@ namespace Calculator
                 if (tmp != "") Do_operation();
                 oper = "divide";
             }
+            Change_history(false);
             tmp = "";
             textBox1.Text = Convert.ToString(value);
             neg = false;
@@ -227,6 +247,8 @@ namespace Calculator
             oper = null;
             neg = false;
             dec = false;
+            history = "";
+            textBox2.Text = history;
             textBox1.Text = tmp;
         }
         //кнопка CE
@@ -276,6 +298,11 @@ namespace Calculator
             a = Math.Sqrt(a);
             tmp = Convert.ToString(a);
             textBox1.Text = tmp;
+        }
+        //журнал
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            textBox2.Text = history;
         }
     }
 }
