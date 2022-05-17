@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "QYxMon+HrO2aflybKEuLRmDFVL3jOw5SXGfY421e5vPkQ+f89+dfEs5uIYu60SDAQ/0UVLbAe5ETu2Zuwm8kSw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sunha\\source\\repos\\Calculator\\Calculator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sunha\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.14\\microsoft.netcore.app.host.win-x64.5.0.14.nupkg.sha512"
+  ],
+  "logs": []
+}
